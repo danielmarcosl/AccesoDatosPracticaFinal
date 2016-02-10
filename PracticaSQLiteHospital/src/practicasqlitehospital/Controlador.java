@@ -2,6 +2,7 @@ package practicasqlitehospital;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 
 /**
  *
@@ -31,8 +32,9 @@ public class Controlador implements ActionListener {
 
         // Hacemos visible los componentes de la ventana
         vista.setVisible(true);
-        
+
         Modelo.mostrarHabitaciones("hosp");
+        Modelo.mostrarPacientes("hosp");
     }
 
     /**
@@ -53,7 +55,10 @@ public class Controlador implements ActionListener {
         } else if (e.getSource() == Vista.bMod) { // Boton modificar
 
         } else if (e.getSource() == Vista.bList) { // Boton listado
-            
+            Vista.textarea.setText("Menu de listados"
+                    + "\nEscribe PACIENTE para listar los pacientes"
+                    + "\nEscribe HABITACION para listar las habitaciones");
+            if ()
         }
     }
 }

@@ -15,8 +15,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.StringTokenizer;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -222,5 +220,71 @@ public class Modelo {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
+    }
+
+    public static void mostrarHabitaciones(String ruta) {
+        String consulta = "select * from habitacion";
+        try {
+            PreparedStatement sel = connectSQLite(ruta).prepareStatement(consulta);
+
+            ResultSet result = sel.executeQuery();
+
+            Vista.textarea.setText(Vista.textarea.getText()
+                    + "\n___Habitaciones___\n");
+            while (result.next()) {
+                int cod_hab = result.getInt(1);
+                int planta = result.getInt(2);
+                int num_cama = result.getInt(3);
+                String doctorasignado = result.getString(4);
+
+                Vista.textarea.setText(Vista.textarea.getText()
+                        + "\nCodigo habitacion: " + cod_hab
+                        + "\nPlanta: " + planta
+                        + "\nNumero cama: " + num_cama
+                        + "\nDoctor asignado: " + doctorasignado + "\n");
+            }
+            result.close();
+            sel.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public static void mostrarPacientes(String ruta) {
+        String consulta = "select * from paciente";
+        try {
+            PreparedStatement sel = connectSQLite(ruta).prepareStatement(consulta);
+
+            ResultSet result = sel.executeQuery();
+
+            Vista.textarea.setText(Vista.textarea.getText()
+                    + "\n___Pacientes___\n");
+            while (result.next()) {
+                int cod_pac = result.getInt(1);
+                String dni = result.getString(2);
+                String nombre = result.getString(3);
+                int edad = result.getInt(4);
+                String sexo = result.getString(5);
+                String alergias = result.getString(6);
+                int cod_hab = result.getInt(7);
+
+                Vista.textarea.setText(Vista.textarea.getText()
+                        + "\nCodigo paciente: " + cod_hab
+                        + "\nDNI: " + dni
+                        + "\nNombre: " + nombre
+                        + "\nEdad: " + edad
+                        + "\nSexo: " + sexo
+                        + "\nAlergias: " + alergias
+                        + "\nCodigo Habitacion: " + cod_hab + "\n");
+            }
+            result.close();
+            sel.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public static void mostrarCamas() {
+
     }
 }

@@ -15,3 +15,11 @@ alergias varchar(20),
 cod_hab smallint(3),
 constraint fk_paciente_cod_hab foreign key (cod_hab) references habitacion(cod_hab)
 );
+
+insert into habitacion values
+(101,1,1,'El barbas'),
+(102,1,2,'Peluquero'),
+(201,2,3,'El tirillas'),
+(202,2,4,'Cigala'),
+(301,3,5,'Pasarlo bien'),
+(302,3,6,'Aprovecharlo');
