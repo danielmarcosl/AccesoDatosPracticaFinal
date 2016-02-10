@@ -19,7 +19,6 @@ public class Controlador implements ActionListener {
      * @param m Nuevo objeto Modelo
      */
     public Controlador(Vista v, Modelo m) {
-
         this.vista = v;
         this.modelo = m;
 
@@ -27,9 +26,13 @@ public class Controlador implements ActionListener {
         vista.bAlta.addActionListener(this);
         vista.bBaja.addActionListener(this);
         vista.bMod.addActionListener(this);
+        vista.bList.addActionListener(this);
         vista.bSalir.addActionListener(this);
 
+        // Hacemos visible los componentes de la ventana
         vista.setVisible(true);
+        
+        Modelo.mostrarHabitaciones("hosp");
     }
 
     /**
@@ -39,16 +42,18 @@ public class Controlador implements ActionListener {
      * @param e Boton pulsado
      */
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == Vista.bSalir) {
+        if (e.getSource() == Vista.bSalir) { // Boton salir
             System.out.println("Se ha cerrado el programa");
             System.exit(0);
-        } else if (e.getSource() == Vista.bAlta) {
+        } else if (e.getSource() == Vista.bAlta) { // Boton alta
             Modelo.insertArrayListSQLite("ejemplo", Modelo.crearArrayPaciente(), "paciente(cod_pac, dni, nombre, edad, sexo, alergias, cod_hab)");
-        } else if (e.getSource() == Vista.bBaja) {
+        } else if (e.getSource() == Vista.bBaja) { // Boton baja
             String codigo = null;
             Modelo.deleteSQLite("ejemplo", codigo);
-        } else if (e.getSource() == Vista.bMod) {
+        } else if (e.getSource() == Vista.bMod) { // Boton modificar
 
+        } else if (e.getSource() == Vista.bList) { // Boton listado
+            
         }
     }
 }
